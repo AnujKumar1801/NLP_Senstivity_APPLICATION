@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NLP Application</title>
+  </head>
+  <body>
+    <h1>NLP APP</h1>
+    <h3>  Login form  </h3>
+
+    
+
+    <form action="/perform_login" method='post'>
+      <label>Email</label><br>
+      <input type="email" name="user_ka_email"><br>
+      <label>Password</label><br>
+      <input type="password" name="user_ka_password"><br>
+      <input type="submit" value = "login">
+
+    </form>
+    {% if message %}
+        <p style='color:green;'>{{message}}</p>
+    {% endif %}
+    <p>Not a member? <a href="/register">Register here</a> </p>
+  </body>
+
+</html>
