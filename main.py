@@ -1,5 +1,6 @@
-from flask import Flask, render_template, jsonify, request, redirect
+from flask import Flask, render_template, jsonify, request, redirect, session
 from dp import Database
+import api
 
 app = Flask(__name__)
 dbo = Database()
@@ -45,9 +46,25 @@ def perform_login():
 
 @app.route('/profile')
 def profile():
-  
-  return 'profile'
+  return render_template('profile.html')
 
+
+@app.route('/ner')
+def ner():
+  return render_template('ner.html')
+
+
+@app.route('/perform_ner', methods=['post'])
+def perform_ner():
+  text = request.form['ner_text']
+  response = api.ner(text)
+
+  return render_template('ner.html', response=response)
+
+
+# @app.route('/perform_ner', method=['post'])
+# def perform_ner():
+#   text = request.form.get('ner_text')
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
